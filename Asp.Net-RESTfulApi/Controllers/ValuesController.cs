@@ -9,31 +9,41 @@ namespace Asp.Net_RESTfulApi.Controllers
 {
     public class ValuesController : ApiController
     {
+        SampleDbContext db = new SampleDbContext();
         // GET api/values
-        public IEnumerable<string> Get()
+        public List<string> st = new List<string>()
+        { "value0","value1","value2"};
+        public IEnumerable<tblStudent> Get()
         {
-            return new string[] { "value1", "value2" };
+            
+            return db.tblStudents.ToList();
         }
+    
+
+      
 
         // GET api/values/5
-        public string Get(int id)
+        public IEnumerable< tblStudent> Get(int id)
         {
-            return "value";
+            return db.tblStudents.Where(x => x.Id == id).ToList();
         }
 
         // POST api/values
         public void Post([FromBody]string value)
         {
+            st.Add(value);
         }
 
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
         {
+            st[id] = value;
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            st.RemoveAt(id);
         }
     }
 }

@@ -1,0 +1,9 @@
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\bin\Debug\netstandard2.0\EmployeeDataAccess1.deps.json
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\bin\Debug\netstandard2.0\EmployeeDataAccess1.dll
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\obj\Debug\netstandard2.0\EmployeeDataAccess1.csprojAssemblyReference.cache
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\obj\Debug\netstandard2.0\EmployeeDataAccess1.csproj.CoreCompileInputs.cache
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\obj\Debug\netstandard2.0\EmployeeDataAccess1.AssemblyInfoInputs.cache
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\obj\Debug\netstandard2.0\EmployeeDataAccess1.AssemblyInfo.cs
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\bin\Debug\netstandard2.0\EmployeeDataAccess1.pdb
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\obj\Debug\netstandard2.0\EmployeeDataAccess1.dll
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\EmployeeDataAccess1\obj\Debug\netstandard2.0\EmployeeDataAccess1.pdb
