@@ -43,7 +43,7 @@ namespace Asp.Net_RESTfulApi
             // config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //  config.Formatters.Remove(config.Formatters.JsonFormatter);
             // config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
-            //  config.Formatters.Add(new CustomJsonFormatter());
+             // config.Formatters.Add(new CustomJsonFormatter());
           // var jsonpformatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
             //config.Formatters.Insert(0, jsonpformatter);
           EnableCorsAttribute cors = new EnableCorsAttribute("*","*","*");

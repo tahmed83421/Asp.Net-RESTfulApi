@@ -4,24 +4,39 @@
     <meta charset="utf-8" />
     <title>Calling Api by Ajax</title>
     <script src="Scripts/jquery-3.3.1.min.js"></script>
-   
+
     <script type="text/javascript">
         $(document).ready(function () {
 
+
+
             var employees = $('#UlList');
             $('#btn').click(function () {
+                var username = $('#txtusername').val();
+                var password = $('#txtpassword').val();
                 $.ajax({
                     type: 'GET',
-                    url: 'https://localhost:44358/api/values?Name=Mark',
-                    contentType: 'application/json; charset=utf-8',
+                    url: 'https://localhost:44358/api/values',
                     dataType: 'json',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(username + ':' + password)
+                    },
                     success: function (data) {
                         employees.empty();
                         $.each(data, function (index, val) {
                             var Name = val.Name;
-                            employees.append('<li>' + Name + '</li>')
+                            var Gender = val.Gender;
+                            employees.append('<li>' + val.FirstName + '(' + val.Gender + ')' + '{' + val.Salary + '}' + '</li>')
+
 
                         });
+                    },
+                    complete: function (jqXHR) {
+                        if (jqXHR.status == '401') {
+                            employees.empty();
+                            employees.append('<li style="color:red">' + jqXHR.status + ':' + jqXHR.statusText + '</li>');
+
+                        }
                     }
                 });
             });
@@ -36,8 +51,11 @@
 
 </head>
 <body>
-    <input id="btn" type="button" value="Get All Employees" />
+    UserName:<input id="txtusername" type="text" /><br />
+    Password:<input id="txtpassword" type="text" /><br /><br />
+    <input id="btn" type="button" value="Authenticate && Get Employees" />
     <input id="btnClear" type="button" value="Clear" />
+
     <ul id="UlList"></ul>
 
 </body>
