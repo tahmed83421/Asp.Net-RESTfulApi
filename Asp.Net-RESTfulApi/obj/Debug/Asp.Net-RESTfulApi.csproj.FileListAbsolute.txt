@@ -84,3 +84,8 @@ C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\EntityFra
 C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\EntityFramework.SqlServer.dll
 C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\EntityFramework.xml
 C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\EntityFramework.SqlServer.xml
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\WebApiContrib.Formatting.Jsonp.dll
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\WebApiContrib.Formatting.Jsonp.pdb
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\System.Web.Cors.dll
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\System.Web.Http.Cors.dll
+C:\Users\Tanvir\source\repos\Asp.Net-RESTfulApi\Asp.Net-RESTfulApi\bin\System.Web.Http.Cors.xml

@@ -3,47 +3,146 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
+using Asp.Net_RESTfulApi.Models;
+using Asp.Net_RESTfulApi;
 
 namespace Asp.Net_RESTfulApi.Controllers
 {
     public class ValuesController : ApiController
     {
         SampleDbContext db = new SampleDbContext();
+        LocalTestEntities db2 = new LocalTestEntities();
+        
         // GET api/values
         public List<string> st = new List<string>()
         { "value0","value1","value2"};
-        public IEnumerable<tblStudent> Get()
+
+      [BasicAuthentication]
+        public HttpResponseMessage Get( string gender="All")
         {
-            
-            return db.tblStudents.ToList();
+            string username = Thread.CurrentPrincipal.Identity.Name;
+
+            switch (username.ToLower())
+            {
+                case "All":
+                    return Request.CreateResponse(HttpStatusCode.OK, db2.Employees.ToList());
+                case "male":
+                    return Request.CreateResponse(HttpStatusCode.OK, db2.Employees.Where(x => x.Gender == "male").ToList());
+                case "female":
+                    return Request.CreateResponse(HttpStatusCode.OK, db2.Employees.Where(x => x.Gender == "female").ToList());
+
+                default:
+                    return Request.CreateResponse(HttpStatusCode.BadRequest,"please Select USername Correctly");
+            }
+        
         }
     
 
       
-
+        [HttpGet]
         // GET api/values/5
-        public IEnumerable< tblStudent> Get(int id)
+        public HttpResponseMessage LoadStudentById(int id)
         {
-            return db.tblStudents.Where(x => x.Id == id).ToList();
+
+            try
+            {
+                using (SampleDbContext DB = new SampleDbContext())
+                {
+                   var entity =  DB.tblStudents.FirstOrDefault(x => x.Id == id);
+                    if(entity != null)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, "not found");
+                    }
+                   
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody] tblStudent student)
         {
-            st.Add(value);
+            try
+            {
+                using (SampleDbContext DB = new SampleDbContext())
+                {
+                    DB.tblStudents.Add(student);
+                    DB.SaveChanges();
+                    var message = Request.CreateResponse(HttpStatusCode.Created, student);
+                    message.Headers.Location = new Uri(Request.RequestUri + student.Id.ToString());
+                    return message;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+              return  Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(int id, [FromBody] tblStudent student)
         {
-            st[id] = value;
+            try
+            {
+
+                using (SampleDbContext db = new SampleDbContext())
+                {
+                    var entity = db.tblStudents.FirstOrDefault(x => x.Id == id);
+                    entity.Name = student.Name;
+                    entity.TotalMarks = student.TotalMarks;
+                    db.SaveChanges();
+                    var message = Request.CreateResponse(HttpStatusCode.Created, student);
+                    message.Headers.Location = new Uri(Request.RequestUri + student.Id.ToString());
+                    return message;
+
+                }
+            }
+            catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+           
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
-            st.RemoveAt(id);
+            try
+            {
+                using (SampleDbContext DB = new SampleDbContext())
+                {
+                  var entity=  DB.tblStudents.FirstOrDefault(x => x.Id == id);
+                    if(entity!=null)
+                    {
+                        DB.tblStudents.Remove(entity);
+                        DB.SaveChanges();
+                       return Request.CreateErrorResponse(HttpStatusCode.OK, "DONE!");
+                    }
+                    else
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Not Fouunf");
+                    }
+                   
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
         }
     }
 }

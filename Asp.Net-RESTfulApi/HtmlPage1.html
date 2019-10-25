@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Calling Api by Ajax</title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var employees = $('#UlList');
+            $('#btn').click(function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'api/values?Name=John',
+                    dataType: 'json',
+                    success: function (data) {
+                        employees.empty();
+                        $.each(data, function (index, val) {
+                            var Name = val.Name;
+                            employees.append('<li>' + Name + '</li>')
+
+                        });
+                    }
+                });
+            });
+            $('#btnClear').click(function () {
+
+                $('#UlList').empty();
+            });
+
+        });
+
+    </script>
+
+</head>
+<body>
+    <input id="btn" type="button" value="Get All Employees" />
+    <input id="btnClear" type="button" value="Clear" />
+    <ul id="UlList"></ul>
+
+</body>
+</html>
