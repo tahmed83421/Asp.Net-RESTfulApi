@@ -14,5 +14,12 @@ namespace Project2.Controllers
 
             return View();
         }
+        public ActionResult Edit()
+        {
+            ViewBag.Title = "Edit Page";
+            return View();
+        }
+
+
     }
 }
