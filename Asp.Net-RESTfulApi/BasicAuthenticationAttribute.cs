@@ -15,14 +15,19 @@ namespace Asp.Net_RESTfulApi
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
+            bool auth;
             if (actionContext.Request.Headers.Authorization == null)
             {
+
                 actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized);
+                auth = false;
+
             }
             else
             {
                 string authenticationToken = actionContext.Request.Headers.Authorization.Parameter;
              string decodedauthenticationToken= Encoding.UTF8.GetString(  Convert.FromBase64String(authenticationToken));
+                auth = true;
 
                 string[] UsernamePasswordArray = decodedauthenticationToken.Split(':');
                 string username = UsernamePasswordArray[0];
