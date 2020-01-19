@@ -1,0 +1,823 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KSAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KSA.dbo.Invoices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Invoice ID" />
+            <PropertyRef Name="To_Name" />
+            <PropertyRef Name="Payment_Terms" />
+          </Key>
+          <Property Name="Invoice ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="To_Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="To_Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Ship_Name" Type="varchar" MaxLength="255" />
+          <Property Name="Ship_Company" Type="varchar" MaxLength="255" />
+          <Property Name="Ship_Adress" Type="varchar" MaxLength="255" />
+          <Property Name="Ship_City" Type="varchar" MaxLength="255" />
+          <Property Name="Ship_Contact" Type="varchar" MaxLength="50" />
+          <Property Name="Vehicle_Id" Type="int" />
+          <Property Name="Order_Id" Type="int" />
+          <Property Name="Delivary_Date" Type="datetime" />
+          <Property Name="Payment_Terms" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarketAnalyze">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Brand" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Condition" Type="varchar" MaxLength="255" />
+          <Property Name="DeliveryTime" Type="varchar" MaxLength="255" />
+          <Property Name="Supplier" Type="varchar" MaxLength="255" />
+          <Property Name="Warranty" Type="varchar" MaxLength="50" />
+          <Property Name="QuotationId" Type="int" />
+          <Property Name="Comment" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PartsId" Type="int" />
+          <Property Name="ProductQuantity" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DeliveryStatus" Type="varchar" MaxLength="255" />
+          <Property Name="Comment" Type="varchar" MaxLength="255" />
+          <Property Name="Approved" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="Unit_Price" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Parts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Picture" Type="varchar" MaxLength="255" />
+          <Property Name="BuyPrice" Type="varchar" MaxLength="50" />
+          <Property Name="SalePrice" Type="varchar" MaxLength="255" />
+          <Property Name="Stock" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleId" Type="int" />
+          <Property Name="Brand" Type="varchar" MaxLength="255" />
+          <Property Name="Approved" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="quotation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Make" Type="varchar" MaxLength="255" />
+          <Property Name="Year" Type="varchar" MaxLength="255" />
+          <Property Name="Model" Type="varchar" MaxLength="255" />
+          <Property Name="VIN" Type="varchar" MaxLength="255" />
+          <Property Name="VPicture" Type="varchar" MaxLength="255" />
+          <Property Name="PartsNumber" Type="varchar" MaxLength="255" />
+          <Property Name="PartsName" Type="varchar" MaxLength="255" />
+          <Property Name="PartsDescription" Type="varchar" MaxLength="255" />
+          <Property Name="PPicture" Type="varchar" MaxLength="255" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KSA.dbo.tblParts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblParts">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Picture" Type="varchar" MaxLength="255" />
+          <Property Name="BuyPrice" Type="varchar" MaxLength="50" />
+          <Property Name="SalePrice" Type="varchar" MaxLength="255" />
+          <Property Name="Stock" Type="varchar" MaxLength="50" />
+          <Property Name="VehicleId" Type="int" />
+          <Property Name="Brand" Type="varchar" MaxLength="255" />
+          <Property Name="Approved" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Role" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Make" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Yearr" Type="varchar" MaxLength="255" />
+          <Property Name="Model" Type="varchar" MaxLength="255" />
+          <Property Name="VIN" Type="varchar" MaxLength="255" />
+          <Property Name="IsSlected" Type="bit" />
+        </EntityType>
+        <EntityType Name="VehicleModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Yearr" Type="varchar" MaxLength="255" />
+          <Property Name="Model" Type="varchar" MaxLength="255" />
+          <Property Name="MakerId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehicleParts">
+          <Key>
+            <PropertyRef Name="PartID" />
+          </Key>
+          <Property Name="PartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarMfgID" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Brand" Type="varchar" MaxLength="255" />
+          <Property Name="Fitment" Type="varchar" MaxLength="255" />
+          <Property Name="Vehicle" Type="varchar" MaxLength="255" />
+          <Property Name="CostPrice" Type="varchar" MaxLength="50" />
+          <Property Name="SalePrice" Type="varchar" MaxLength="255" />
+          <Property Name="Qty" Type="varchar" MaxLength="50" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="VModelId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Invoices__Custom__71D1E811">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoices__Order___73BA3083">
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoices__Vehicl__72C60C4A">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Vehicle_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Custo__6EF57B66">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parts__ID__37A5467C">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Parts" Type="Self.Parts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parts">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Role__UserId__30F848ED">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KSAModelStoreContainer">
+          <EntitySet Name="Administration" EntityType="Self.Administration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarketAnalyze" EntityType="Self.MarketAnalyze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="quotation" EntityType="Self.quotation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleModel" EntityType="Self.VehicleModel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehicleParts" EntityType="Self.VehicleParts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Invoices].[Invoice ID] AS [Invoice ID], 
+    [Invoices].[CustomerID] AS [CustomerID], 
+    [Invoices].[To_Name] AS [To_Name], 
+    [Invoices].[To_Phone] AS [To_Phone], 
+    [Invoices].[Ship_Name] AS [Ship_Name], 
+    [Invoices].[Ship_Company] AS [Ship_Company], 
+    [Invoices].[Ship_Adress] AS [Ship_Adress], 
+    [Invoices].[Ship_City] AS [Ship_City], 
+    [Invoices].[Ship_Contact] AS [Ship_Contact], 
+    [Invoices].[Vehicle_Id] AS [Vehicle_Id], 
+    [Invoices].[Order_Id] AS [Order_Id], 
+    [Invoices].[Delivary_Date] AS [Delivary_Date], 
+    [Invoices].[Payment_Terms] AS [Payment_Terms]
+    FROM [dbo].[Invoices] AS [Invoices]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblParts" EntityType="Self.tblParts" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblParts].[ID] AS [ID], 
+    [tblParts].[Name] AS [Name], 
+    [tblParts].[Description] AS [Description], 
+    [tblParts].[Picture] AS [Picture], 
+    [tblParts].[BuyPrice] AS [BuyPrice], 
+    [tblParts].[SalePrice] AS [SalePrice], 
+    [tblParts].[Stock] AS [Stock], 
+    [tblParts].[VehicleId] AS [VehicleId], 
+    [tblParts].[Brand] AS [Brand], 
+    [tblParts].[Approved] AS [Approved]
+    FROM [dbo].[tblParts] AS [tblParts]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Invoices__Custom__71D1E811" Association="Self.FK__Invoices__Custom__71D1E811">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoices__Order___73BA3083" Association="Self.FK__Invoices__Order___73BA3083">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoices__Vehicl__72C60C4A" Association="Self.FK__Invoices__Vehicl__72C60C4A">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Custo__6EF57B66" Association="Self.FK__OrderDeta__Custo__6EF57B66">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parts__ID__37A5467C" Association="Self.FK__Parts__ID__37A5467C">
+            <End Role="Vehicle" EntitySet="Vehicle" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Role__UserId__30F848ED" Association="Self.FK__Role__UserId__30F848ED">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Role" EntitySet="Role" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KSAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administration">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MarketAnalyze">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DeliveryTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Warranty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="QuotationId" Type="Int32" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PartsId" Type="Int32" />
+          <Property Name="ProductQuantity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DeliveryStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Approved" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="Unit_Price" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Order___73BA3083" FromRole="OrderDetails" ToRole="Invoices" />
+          <NavigationProperty Name="User" Relationship="Self.FK__OrderDeta__Custo__6EF57B66" FromRole="OrderDetails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Part">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BuyPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Approved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK__Parts__ID__37A5467C" FromRole="Parts" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="quotation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VPicture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PartsNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PartsName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PartsDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PPicture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Role__UserId__30F848ED" FromRole="Role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Custo__6EF57B66" FromRole="Users" ToRole="OrderDetails" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Role__UserId__30F848ED" FromRole="Users" ToRole="Role" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Custom__71D1E811" FromRole="Users" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="Vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Yearr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IsSlected" Type="Boolean" />
+          <NavigationProperty Name="Part" Relationship="Self.FK__Parts__ID__37A5467C" FromRole="Vehicle" ToRole="Parts" />
+          <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Vehicl__72C60C4A" FromRole="Vehicle" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="VehicleModel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Yearr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MakerId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehiclePart">
+          <Key>
+            <PropertyRef Name="PartID" />
+          </Key>
+          <Property Name="PartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarMfgID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fitment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Vehicle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CostPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="VModelId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Invoice_ID" />
+            <PropertyRef Name="To_Name" />
+            <PropertyRef Name="Payment_Terms" />
+          </Key>
+          <Property Name="Invoice_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="To_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="To_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Company" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Adress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ship_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Vehicle_Id" Type="Int32" />
+          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="Delivary_Date" Type="DateTime" Precision="3" />
+          <Property Name="Payment_Terms" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderDetail" Relationship="Self.FK__Invoices__Order___73BA3083" FromRole="Invoices" ToRole="OrderDetails" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Invoices__Custom__71D1E811" FromRole="Invoices" ToRole="Users" />
+          <NavigationProperty Name="Vehicle" Relationship="Self.FK__Invoices__Vehicl__72C60C4A" FromRole="Invoices" ToRole="Vehicle" />
+        </EntityType>
+        <EntityType Name="tblPart">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="BuyPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SalePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Stock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleId" Type="Int32" />
+          <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Approved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Invoices__Order___73BA3083">
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderDetails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Custo__6EF57B66">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parts__ID__37A5467C">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+          <End Role="Parts" Type="Self.Part" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parts">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Role__UserId__30F848ED">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoices__Custom__71D1E811">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoices__Vehicl__72C60C4A">
+          <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehicle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Vehicle_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KSAEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrations" EntityType="Self.Administration" />
+          <EntitySet Name="MarketAnalyzes" EntityType="Self.MarketAnalyze" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="Parts" EntityType="Self.Part" />
+          <EntitySet Name="quotations" EntityType="Self.quotation" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+          <EntitySet Name="VehicleModels" EntityType="Self.VehicleModel" />
+          <EntitySet Name="VehicleParts" EntityType="Self.VehiclePart" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="tblParts" EntityType="Self.tblPart" />
+          <AssociationSet Name="FK__Invoices__Order___73BA3083" Association="Self.FK__Invoices__Order___73BA3083">
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Custo__6EF57B66" Association="Self.FK__OrderDeta__Custo__6EF57B66">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parts__ID__37A5467C" Association="Self.FK__Parts__ID__37A5467C">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Role__UserId__30F848ED" Association="Self.FK__Role__UserId__30F848ED">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Role" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoices__Custom__71D1E811" Association="Self.FK__Invoices__Custom__71D1E811">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Invoices__Vehicl__72C60C4A" Association="Self.FK__Invoices__Vehicl__72C60C4A">
+            <End Role="Vehicle" EntitySet="Vehicles" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KSAModelStoreContainer" CdmEntityContainer="KSAEntities1">
+          <EntitySetMapping Name="Administrations">
+            <EntityTypeMapping TypeName="KSAModel.Administration">
+              <MappingFragment StoreEntitySet="Administration">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarketAnalyzes">
+            <EntityTypeMapping TypeName="KSAModel.MarketAnalyze">
+              <MappingFragment StoreEntitySet="MarketAnalyze">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="DeliveryTime" ColumnName="DeliveryTime" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+                <ScalarProperty Name="QuotationId" ColumnName="QuotationId" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="KSAModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PartsId" ColumnName="PartsId" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Unit_Price" ColumnName="Unit_Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="KSAModel.Part">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="quotations">
+            <EntityTypeMapping TypeName="KSAModel.quotation">
+              <MappingFragment StoreEntitySet="quotation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="VPicture" ColumnName="VPicture" />
+                <ScalarProperty Name="PartsNumber" ColumnName="PartsNumber" />
+                <ScalarProperty Name="PartsName" ColumnName="PartsName" />
+                <ScalarProperty Name="PartsDescription" ColumnName="PartsDescription" />
+                <ScalarProperty Name="PPicture" ColumnName="PPicture" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="KSAModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="KSAModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehicles">
+            <EntityTypeMapping TypeName="KSAModel.Vehicle">
+              <MappingFragment StoreEntitySet="Vehicle">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Yearr" ColumnName="Yearr" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="VIN" ColumnName="VIN" />
+                <ScalarProperty Name="IsSlected" ColumnName="IsSlected" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleModels">
+            <EntityTypeMapping TypeName="KSAModel.VehicleModel">
+              <MappingFragment StoreEntitySet="VehicleModel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Yearr" ColumnName="Yearr" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="MakerId" ColumnName="MakerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehicleParts">
+            <EntityTypeMapping TypeName="KSAModel.VehiclePart">
+              <MappingFragment StoreEntitySet="VehicleParts">
+                <ScalarProperty Name="PartID" ColumnName="PartID" />
+                <ScalarProperty Name="CarMfgID" ColumnName="CarMfgID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Fitment" ColumnName="Fitment" />
+                <ScalarProperty Name="Vehicle" ColumnName="Vehicle" />
+                <ScalarProperty Name="CostPrice" ColumnName="CostPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="VModelId" ColumnName="VModelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="KSAModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="Invoice_ID" ColumnName="Invoice ID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="To_Name" ColumnName="To_Name" />
+                <ScalarProperty Name="To_Phone" ColumnName="To_Phone" />
+                <ScalarProperty Name="Ship_Name" ColumnName="Ship_Name" />
+                <ScalarProperty Name="Ship_Company" ColumnName="Ship_Company" />
+                <ScalarProperty Name="Ship_Adress" ColumnName="Ship_Adress" />
+                <ScalarProperty Name="Ship_City" ColumnName="Ship_City" />
+                <ScalarProperty Name="Ship_Contact" ColumnName="Ship_Contact" />
+                <ScalarProperty Name="Vehicle_Id" ColumnName="Vehicle_Id" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Delivary_Date" ColumnName="Delivary_Date" />
+                <ScalarProperty Name="Payment_Terms" ColumnName="Payment_Terms" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblParts">
+            <EntityTypeMapping TypeName="KSAModel.tblPart">
+              <MappingFragment StoreEntitySet="tblParts">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="BuyPrice" ColumnName="BuyPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="VehicleId" ColumnName="VehicleId" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

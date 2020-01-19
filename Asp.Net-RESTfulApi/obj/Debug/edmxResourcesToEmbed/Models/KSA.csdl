@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KSAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Administration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MarketAnalyze">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Condition" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DeliveryTime" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Warranty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="QuotationId" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PartsId" Type="Int32" />
+    <Property Name="ProductQuantity" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DeliveryStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Approved" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="Unit_Price" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Order___73BA3083" FromRole="OrderDetails" ToRole="Invoices" />
+    <NavigationProperty Name="User" Relationship="Self.FK__OrderDeta__Custo__6EF57B66" FromRole="OrderDetails" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BuyPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Stock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Approved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK__Parts__ID__37A5467C" FromRole="Parts" ToRole="Vehicle" />
+  </EntityType>
+  <EntityType Name="quotation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="VIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="VPicture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PartsNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PartsName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PartsDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PPicture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Role__UserId__30F848ED" FromRole="Role" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK__OrderDeta__Custo__6EF57B66" FromRole="Users" ToRole="OrderDetails" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK__Role__UserId__30F848ED" FromRole="Users" ToRole="Role" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Custom__71D1E811" FromRole="Users" ToRole="Invoices" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Make" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Yearr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="VIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="IsSlected" Type="Boolean" />
+    <NavigationProperty Name="Part" Relationship="Self.FK__Parts__ID__37A5467C" FromRole="Vehicle" ToRole="Parts" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK__Invoices__Vehicl__72C60C4A" FromRole="Vehicle" ToRole="Invoices" />
+  </EntityType>
+  <EntityType Name="VehicleModel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Yearr" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MakerId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VehiclePart">
+    <Key>
+      <PropertyRef Name="PartID" />
+    </Key>
+    <Property Name="PartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CarMfgID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Fitment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Vehicle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CostPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Qty" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <Property Name="Approved" Type="Boolean" Nullable="false" />
+    <Property Name="VModelId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Invoice_ID" />
+      <PropertyRef Name="To_Name" />
+      <PropertyRef Name="Payment_Terms" />
+    </Key>
+    <Property Name="Invoice_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="To_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="To_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Ship_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Ship_Company" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Ship_Adress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Ship_City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Ship_Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Vehicle_Id" Type="Int32" />
+    <Property Name="Order_Id" Type="Int32" />
+    <Property Name="Delivary_Date" Type="DateTime" Precision="3" />
+    <Property Name="Payment_Terms" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OrderDetail" Relationship="Self.FK__Invoices__Order___73BA3083" FromRole="Invoices" ToRole="OrderDetails" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Invoices__Custom__71D1E811" FromRole="Invoices" ToRole="Users" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK__Invoices__Vehicl__72C60C4A" FromRole="Invoices" ToRole="Vehicle" />
+  </EntityType>
+  <EntityType Name="tblPart">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="BuyPrice" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SalePrice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Stock" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="VehicleId" Type="Int32" />
+    <Property Name="Brand" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Approved" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__Invoices__Order___73BA3083">
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="0..1" />
+    <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="Order_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderDeta__Custo__6EF57B66">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="OrderDetails" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OrderDetails">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Parts__ID__37A5467C">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+    <End Role="Parts" Type="Self.Part" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Role__UserId__30F848ED">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Role" Type="Self.Role" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Role">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoices__Custom__71D1E811">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Invoices__Vehicl__72C60C4A">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="Vehicle_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KSAEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrations" EntityType="Self.Administration" />
+    <EntitySet Name="MarketAnalyzes" EntityType="Self.MarketAnalyze" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="Parts" EntityType="Self.Part" />
+    <EntitySet Name="quotations" EntityType="Self.quotation" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+    <EntitySet Name="VehicleModels" EntityType="Self.VehicleModel" />
+    <EntitySet Name="VehicleParts" EntityType="Self.VehiclePart" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="tblParts" EntityType="Self.tblPart" />
+    <AssociationSet Name="FK__Invoices__Order___73BA3083" Association="Self.FK__Invoices__Order___73BA3083">
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderDeta__Custo__6EF57B66" Association="Self.FK__OrderDeta__Custo__6EF57B66">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="OrderDetails" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Parts__ID__37A5467C" Association="Self.FK__Parts__ID__37A5467C">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Role__UserId__30F848ED" Association="Self.FK__Role__UserId__30F848ED">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Role" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoices__Custom__71D1E811" Association="Self.FK__Invoices__Custom__71D1E811">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Invoices__Vehicl__72C60C4A" Association="Self.FK__Invoices__Vehicl__72C60C4A">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

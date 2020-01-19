@@ -13,13 +13,20 @@ namespace Asp.Net_RESTfulApi.Controllers
     public class ValuesController : ApiController
     {
         SampleDbContext db = new SampleDbContext();
-        LocalTestEntities db2 = new LocalTestEntities();
+        KSAEntities1 db2 = new KSAEntities1();
         
         // GET api/values
         public List<string> st = new List<string>()
         { "value0","value1","value2"};
 
-      [BasicAuthentication]
+        [HttpGet]
+        public IEnumerable<string> Get()
+        {
+            return st;
+        }
+
+
+     /* [BasicAuthentication]
         public HttpResponseMessage Get( string gender="All")
         {
             string username = Thread.CurrentPrincipal.Identity.Name;
@@ -40,34 +47,35 @@ namespace Asp.Net_RESTfulApi.Controllers
         }
     
 
-      
-        [HttpGet]
+      */
+      [HttpGet]
         // GET api/values/5
         public HttpResponseMessage LoadStudentById(int id)
         {
 
-            try
-            {
-                using (SampleDbContext DB = new SampleDbContext())
-                {
-                   var entity =  DB.tblStudents.FirstOrDefault(x => x.Id == id);
-                    if(entity != null)
-                    {
-                        return Request.CreateResponse(HttpStatusCode.OK, entity);
-                    }
-                    else
-                    {
-                        return Request.CreateResponse(HttpStatusCode.BadRequest, "not found");
-                    }
+            return Request.CreateResponse(HttpStatusCode.OK,st[id]);
+            //try
+            //{
+            //    using (SampleDbContext DB = new SampleDbContext())
+            //    {
+            //       var entity =  DB.tblStudents.FirstOrDefault(x => x.Id == id);
+            //        if(entity != null)
+            //        {
+            //            return Request.CreateResponse(HttpStatusCode.OK, entity);
+            //        }
+            //        else
+            //        {
+            //            return Request.CreateResponse(HttpStatusCode.BadRequest, "not found");
+            //        }
                    
 
 
-                }
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            //}
         }
 
         // POST api/values

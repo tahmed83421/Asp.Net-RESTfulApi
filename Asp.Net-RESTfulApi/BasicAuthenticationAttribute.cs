@@ -32,11 +32,9 @@ namespace Asp.Net_RESTfulApi
                 string[] UsernamePasswordArray = decodedauthenticationToken.Split(':');
                 string username = UsernamePasswordArray[0];
                 string password = UsernamePasswordArray[1];
-                if (EmployeeSecurity.Login(username, password))
-                {
+              
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null);
-                }
-                else
+              
                 {
                     actionContext.Response = actionContext.Request.CreateResponse(System.Net.HttpStatusCode.Unauthorized);
                 }

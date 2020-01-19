@@ -173,6 +173,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="BasicAuthenticationAttribute.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataModelDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -189,30 +190,59 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModelDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeSecurity.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employee.cs">
-      <DependentUpon>Model1Employee.tt</DependentUpon>
+    <Compile Include="Models\Administration.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1Employee.Context.cs">
+    <Compile Include="Models\Invoice.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KSA.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1Employee.Context.tt</DependentUpon>
+      <DependentUpon>KSA.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1Employee.cs">
+    <Compile Include="Models\KSA.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1Employee.tt</DependentUpon>
+      <DependentUpon>KSA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1Employee.Designer.cs">
+    <Compile Include="Models\KSA.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1Employee.edmx</DependentUpon>
+      <DependentUpon>KSA.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MarketAnalyze.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Part.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\quotation.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblPart.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>Model1Employee.tt</DependentUpon>
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Vehicle.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VehicleModel.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VehiclePart.cs">
+      <DependentUpon>KSA.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequireHttpsAttribute.cs" />
@@ -240,15 +270,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="HtmlPage1.html" />
-    <Content Include="Models\Model1Employee.Context.tt">
+    <Content Include="Models\KSA.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1Employee.edmx</DependentUpon>
-      <LastGenOutput>Model1Employee.Context.cs</LastGenOutput>
+      <DependentUpon>KSA.edmx</DependentUpon>
+      <LastGenOutput>KSA.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model1Employee.tt">
+    <Content Include="Models\KSA.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1Employee.edmx</DependentUpon>
-      <LastGenOutput>Model1Employee.cs</LastGenOutput>
+      <DependentUpon>KSA.edmx</DependentUpon>
+      <LastGenOutput>KSA.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -278,12 +308,12 @@
     <Content Include="DataModelDB.edmx.diagram">
       <DependentUpon>DataModelDB.edmx</DependentUpon>
     </Content>
-    <EntityDeploy Include="Models\Model1Employee.edmx">
+    <EntityDeploy Include="Models\KSA.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1Employee.Designer.cs</LastGenOutput>
+      <LastGenOutput>KSA.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Model1Employee.edmx.diagram">
-      <DependentUpon>Model1Employee.edmx</DependentUpon>
+    <Content Include="Models\KSA.edmx.diagram">
+      <DependentUpon>KSA.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

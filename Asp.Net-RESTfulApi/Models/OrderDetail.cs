@@ -12,31 +12,26 @@ namespace Asp.Net_RESTfulApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class OrderDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public OrderDetail()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
-            this.Roles = new HashSet<Role>();
             this.Invoices = new HashSet<Invoice>();
         }
     
         public int ID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string UserId { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public string Role { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> PartsId { get; set; }
+        public string ProductQuantity { get; set; }
+        public string DeliveryStatus { get; set; }
+        public string Comment { get; set; }
+        public string Approved { get; set; }
+        public Nullable<int> CustomerID { get; set; }
+        public string Unit_Price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Roles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual User User { get; set; }
     }
 }

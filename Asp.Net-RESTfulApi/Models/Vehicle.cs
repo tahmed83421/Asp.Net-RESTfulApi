@@ -12,30 +12,22 @@ namespace Asp.Net_RESTfulApi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Vehicle
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public Vehicle()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
-            this.Roles = new HashSet<Role>();
             this.Invoices = new HashSet<Invoice>();
         }
     
-        public int ID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string UserId { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public string Role { get; set; }
+        public int Id { get; set; }
+        public string Make { get; set; }
+        public string Yearr { get; set; }
+        public string Model { get; set; }
+        public string VIN { get; set; }
+        public Nullable<bool> IsSlected { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual Part Part { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
     }
