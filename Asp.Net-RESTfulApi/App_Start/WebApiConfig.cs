@@ -39,16 +39,16 @@ namespace Asp.Net_RESTfulApi
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //config.Formatters.JsonFormatter.SerializerSettings.Formatting =  Newtonsoft.Json.Formatting.Indented;
-            // config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+           // config.Formatters.JsonFormatter.SerializerSettings.Formatting =  Newtonsoft.Json.Formatting.Indented;
+          // config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //  config.Formatters.Remove(config.Formatters.JsonFormatter);
             // config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
              // config.Formatters.Add(new CustomJsonFormatter());
           // var jsonpformatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
             //config.Formatters.Insert(0, jsonpformatter);
-          EnableCorsAttribute cors = new EnableCorsAttribute("*","*","*");
-            config.EnableCors(cors);
-            config.Filters.Add(new RequireHttpsAttribute());
+        //  EnableCorsAttribute cors = new EnableCorsAttribute("*","*","*");
+         //   config.EnableCors(cors);
+          //  config.Filters.Add(new RequireHttpsAttribute());
             
         }
 

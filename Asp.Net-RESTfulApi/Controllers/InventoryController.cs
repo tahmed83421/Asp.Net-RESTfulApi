@@ -24,6 +24,16 @@ namespace Asp.Net_RESTfulApi.Controllers
             
             return db.VehicleParts.SingleOrDefault(x => x.PartID == id);
         }
+
+        [HttpPost]
+        public void Addinvenroty([FromBody] VehiclePart vehiclePart)
+        {
+            db.VehicleParts.Add(vehiclePart);
+            db.SaveChanges();
+
+
+        }
+
         public void deleteParts(int id)
         {
             db.VehicleParts.Remove(db.VehicleParts.Find(id));
